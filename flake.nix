@@ -20,16 +20,21 @@
       ];
     in
     {
-      examples = eachSystem (system: omnibus.load {
-        src = ./.;
-        transformer = [ (_cursor: dir: if dir ? default then dir.default else dir) ];
-        inputs = inputs.nixpkgs.lib.recursiveUpdate omnibus.lib.omnibus.loaderInputs {
-          inherit system;
-          inherit inputs;
-          trace = true;
-        };
-      });
-      packages = eachSystem (system: self.examples.${system}.packages.exports.derivations);
+      examples = eachSystem (
+        system:
+        omnibus.load {
+          src = ./.;
+          transformer = [ (_cursor: dir: if dir ? default then dir.default else dir) ];
+          inputs = inputs.nixpkgs.lib.recursiveUpdate omnibus.lib.omnibus.loaderInputs {
+            inherit system;
+            inherit inputs;
+            trace = true;
+          };
+        }
+      );
+      packages = eachSystem (
+        system: self.examples.${system}.packages.exports.derivations
+      );
     }
     // {
       templates = {

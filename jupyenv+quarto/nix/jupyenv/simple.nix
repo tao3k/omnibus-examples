@@ -1,6 +1,10 @@
-{ pkgs, inputs, omnibus }:
 {
-  imports = [omnibus.jupyenv.quarto];
+  pkgs,
+  inputs,
+  omnibus,
+}:
+{
+  imports = [ omnibus.jupyenv.quarto ];
   publishers.quarto.enable = true;
 
   kernel.python.data-science = {

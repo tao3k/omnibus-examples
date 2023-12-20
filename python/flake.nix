@@ -43,7 +43,10 @@
     // {
       packages = eachSystem (system: self.src.${system}.packages.exports.derivations);
       overlays = {
-        inherit (self.src.x86_64-linux.packages.exports.overlays) default composePackages;
+        inherit (self.src.x86_64-linux.packages.exports.overlays)
+          default
+          composePackages
+          ;
       };
       inherit pops;
     };

@@ -48,18 +48,24 @@
     // {
       packages = eachSystem (
         system:
-        self.src.${system}.packages.exports.derivations // self.src.${system}.jupyenv.exports.jupyenvEnv
+        self.src.${system}.packages.exports.derivations
+        // self.src.${system}.jupyenv.exports.jupyenvEnv
       );
       apps = eachSystem (
         system: {
           quartoSimple = {
             type = "app";
-            program = self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv + "/bin/quarto";
+            program =
+              self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv
+              + "/bin/quarto";
           };
         }
       );
       overlays = {
-        inherit (self.src.x86_64-linux.packages.exports.overlays) default composePackages;
+        inherit (self.src.x86_64-linux.packages.exports.overlays)
+          default
+          composePackages
+          ;
       };
       inherit pops;
     };

@@ -1,8 +1,4 @@
-{
-  poetry2nix,
-  python3,
-  ...
-}:
+{ poetry2nix, python3, ... }:
 poetry2nix.mkPoetryEnv {
   projectDir = ./.;
   preferWheels = true;

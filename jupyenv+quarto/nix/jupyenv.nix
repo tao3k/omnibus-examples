@@ -2,7 +2,7 @@
   omnibus,
   inputs,
   system,
-  projectRoot
+  projectRoot,
 }:
 let
   nixpkgs = inputs.nixpkgs.legacyPackages.${system};
