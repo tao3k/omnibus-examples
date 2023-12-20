@@ -20,5 +20,16 @@
         };
       };
       packages.x86_64-linux = self.examples.packages.exports.derivations;
+    }
+    // {
+      templates = {
+        simple = {
+          path = ./simple;
+          description = "Omnibus & simple case";
+          welcomeText = ''
+            You have created a simple case template!
+          '';
+        };
+      };
     };
 }
