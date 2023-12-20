@@ -1,4 +1,4 @@
-# [[file:../docs/org/pops-packages.org::*Example][Example:3]]
+# [[file:../../docs/org/pops-packages.org::*Example][Example:3]]
 { super, omnibus }:
 let
   nixos-23_11 = omnibus.flake.inputs.nixos-23_11;
