@@ -52,9 +52,9 @@
       );
       apps = eachSystem (
         system: {
-          quartSimple = {
+          quartoSimple = {
             type = "app";
-            program = self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv;
+            program = self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv + "/bin/quarto";
           };
         }
       );
