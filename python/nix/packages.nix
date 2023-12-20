@@ -3,12 +3,15 @@
   omnibus,
   inputs,
   system,
+  projectRoot,
 }:
 let
-  nixpkgs = inputs.nixpkgs.legacyPackages.${system};
+  nixpkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [
+    inputs.poetry2nix.overlays.default
+  ];
 in
 (omnibus.pops.packages {
-  src = ./__fixture;
+  src = projectRoot + /nix/packages;
   inputs = {
     inputs = {
       inherit nixpkgs;

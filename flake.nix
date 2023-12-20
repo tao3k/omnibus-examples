@@ -10,16 +10,26 @@
 
   outputs =
     { self, omnibus, ... }@inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      eachSystem = lib.genAttrs [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+    in
     {
-      examples = omnibus.load {
+      examples = eachSystem (system: omnibus.load {
         src = ./.;
         transformer = [ (_cursor: dir: if dir ? default then dir.default else dir) ];
         inputs = inputs.nixpkgs.lib.recursiveUpdate omnibus.lib.omnibus.loaderInputs {
+          inherit system;
           inherit inputs;
           trace = true;
         };
-      };
-      packages.x86_64-linux = self.examples.packages.exports.derivations;
+      });
+      packages = eachSystem (system: self.examples.${system}.packages.exports.derivations);
     }
     // {
       templates = {
