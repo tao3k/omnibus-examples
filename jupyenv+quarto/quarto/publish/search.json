@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jupyenv&Quarto",
+    "section": "",
+    "text": "Getting Started"
+  },
+  {
+    "objectID": "julia.html",
+    "href": "julia.html",
+    "title": "Julia",
+    "section": "",
+    "text": "Code\nusing Plots\n# define the Lorenz attractor\nBase.@kwdef mutable struct Lorenz\n    dt::Float64 = 0.02\n    σ::Float64 = 10\n    ρ::Float64 = 28\n    β::Float64 = 8/3\n    x::Float64 = 1\n    y::Float64 = 1\n    z::Float64 = 1\nend\n\nfunction step!(l::Lorenz)\n    dx = l.σ * (l.y - l.x)\n    dy = l.x * (l.ρ - l.z) - l.y\n    dz = l.x * l.y - l.β * l.z\n    l.x += l.dt * dx\n    l.y += l.dt * dy\n    l.z += l.dt * dz\nend\n\nattractor = Lorenz()\n\n\n# initialize a 3D plot with 1 empty series\nplt = plot3d(\n    1,\n    xlim = (-30, 30),\n    ylim = (-30, 30),\n    zlim = (0, 60),\n    title = \"Lorenz Attractor\",\n    legend = false,\n    marker = 2,\n)\n\n# build an animated gif by pushing new points to the plot, saving every 10th frame\n@gif for i=1:1500\n    step!(attractor)\n    push!(plt, attractor.x, attractor.y, attractor.z)\nend every 10"
+  },
+  {
+    "objectID": "python.html",
+    "href": "python.html",
+    "title": "Python",
+    "section": "",
+    "text": "Code\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots()\n\nfruits = ['apple', 'blueberry', 'cherry', 'orange']\ncounts = [40, 100, 30, 55]\nbar_labels = ['red', 'blue', '_red', 'orange']\nbar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']\n\nax.bar(fruits, counts, label=bar_labels, color=bar_colors)\n\nax.set_ylabel('fruit supply')\nax.set_title('Fruit supply by kind and color')\nax.legend(title='Fruit color')\n\n\n&lt;matplotlib.legend.Legend at 0x7fc37d017dd0&gt;"
+  }
+]

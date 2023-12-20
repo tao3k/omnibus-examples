@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: ./publish
+
+book:
+  title: "Jupyenv&Quarto"
+  language: "en"
+  author: "Guangtao Zhang"
+  reader-mode: true
+  chapters:
+    - index.qmd
+
+    - part: julia.qmd
+    - part: python.qmd
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+  pdf:
+    documentclass: ctexbook
+    pdf-engine: tectonic
+
+execute:
+  warning: false
+
+biliography: references.lib

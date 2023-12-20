@@ -1,4 +1,4 @@
-# Document Title
+# Python
 
 ```{python kernel="python-data-science"}
 #| code-fold: true
@@ -17,4 +17,3 @@ ax.set_ylabel('fruit supply')
 ax.set_title('Fruit supply by kind and color')
 ax.legend(title='Fruit color')
 ```
-
