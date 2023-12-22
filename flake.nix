@@ -28,7 +28,7 @@
           inputs = inputs.nixpkgs.lib.recursiveUpdate omnibus.lib.omnibus.loaderInputs {
             inherit system;
             inherit inputs;
-            trace = true;
+            debug = true;
           };
         }
       );

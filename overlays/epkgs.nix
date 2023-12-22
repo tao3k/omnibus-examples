@@ -1,7 +1,7 @@
 { root }:
 let
   pkgs = root.pops.flake.inputs.nixpkgs.legacyPackages.x86_64-linux;
-  overlay = final: prev: {
+  overlay = final: _prev: {
     # TODO include other files?
     typst-ts-mode = final.elpaBuild {
       pname = "typst-ts-mode";

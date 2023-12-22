@@ -1076,7 +1076,7 @@ files = [
 [[package]]
 name = "stack-data"
 version = "0.6.3"
-description = "Extract data from python stack frames and tracebacks for informative displays"
+description = "Extract data from python stack frames and debugbacks for informative displays"
 optional = false
 python-versions = "*"
 files = [

@@ -37,7 +37,7 @@ let
     }
     // addNativeBuildInputs "coolname" [ final.setuptools ];
 
-  preOverlay = final: prev: {
+  preOverlay = _final: prev: {
     wheel = prev.wheel.override { preferWheel = false; };
 
     # disable wheel for these packages, because they will require a rust dependency

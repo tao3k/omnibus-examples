@@ -6,11 +6,11 @@ in
 nixos-23_11.legacyPackages.x86_64-linux.appendOverlays [
   super.packages.exports.overlays.composePackages
   # super.packages.exports.overlays.default
-  (final: prev: {
+  (_final: prev: {
     python3Packages = prev.python3Packages.override (
       old: {
         overrides = prev.lib.composeExtensions (old.overrides or (_: _: { })) (
-          selfP: _:
+          _selfP: _:
           # can be either super.packages.exports.packages.py.packages selfP
           {
             a = "1";
