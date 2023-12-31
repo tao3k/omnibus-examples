@@ -58,9 +58,14 @@
         );
         allData = eachSystem (
           system:
-          (pops.omnibus.${system}.outputs { }).pops.allData.addLoadExtender {
+          pops.omnibus.pops.allData.addLoadExtender {
             load = {
               src = ./data;
+              inputs = {
+                inputs = {
+                  nixpkgs = inputs.nixos-unstable.legacyPackages.${system};
+                };
+              };
             };
           }
         );
