@@ -2,7 +2,7 @@
 let
   inherit (inputs) omnibusStd;
 in
-omnibusStd.mkCells.pops commonArgs {
+omnibusStd.mkBlocks.pops commonArgs {
   scripts = {
     src = ./scripts;
   };
