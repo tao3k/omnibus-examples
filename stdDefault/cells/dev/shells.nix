@@ -1,7 +1,7 @@
 { inputs, cell }:
 let
   inherit (inputs.std) lib;
-  inherit (inputs) nixpkgs std;
+  inherit (inputs) std;
 in
 {
   # Tool Homepage: https://numtide.github.io/devshell/

@@ -8,9 +8,8 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs =
-    { self, omnibus, ... }@inputs:
+    { omnibus, ... }@inputs:
     let
-      inherit (inputs.nixpkgs) lib;
       inherit (omnibus.flake.inputs) std;
       systems = [
         "x86_64-linux"

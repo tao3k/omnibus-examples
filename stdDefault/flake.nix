@@ -8,10 +8,10 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs =
-    { self, omnibus, ... }@inputs:
+    { omnibus, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      inherit (omnibus.flake.inputs) std climodSrc;
+      inherit (omnibus.flake.inputs) std climodSrc flake-parts;
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -24,11 +24,20 @@
           };
         }).exports.default;
     in
-    omnibusStd.mkDefaultStd {
-      cellsFrom = ./cells;
+    flake-parts.lib.mkFlake { inherit inputs; } {
       inherit systems;
-      inputs = inputs // {
-        inherit climodSrc;
+      imports = [
+        omnibusStd.flakeModule
+      ];
+      std.std = omnibusStd.mkDefaultStd {
+        cellsFrom = ./cells;
+        inherit systems;
+        inputs = inputs // {
+          inherit climodSrc;
+        };
+      };
+      std.harvest = {
+        packages = ["dev" "packages"];
       };
     };
 }
