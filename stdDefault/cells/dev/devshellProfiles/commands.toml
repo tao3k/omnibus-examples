@@ -1,0 +1,6 @@
+[[commands]]
+name = "hello-std"
+command = '''
+        echo \"hello world\"
+        '''
+help = "Hello world for testing"
