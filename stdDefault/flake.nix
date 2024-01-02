@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 {
-  description = "A very basic flake";
+  description = "OmnibusStd";
 
   inputs.omnibus.url = "github:gtrunsec/omnibus";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -11,7 +11,7 @@
     { self, omnibus, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      inherit (omnibus.flake.inputs) std;
+      inherit (omnibus.flake.inputs) std climodSrc;
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -26,6 +26,9 @@
     in
     omnibusStd.mkDefaultStd {
       cellsFrom = ./cells;
-      inherit systems inputs;
+      inherit systems;
+      inputs = inputs // {
+        inherit climodSrc;
+      };
     };
 }

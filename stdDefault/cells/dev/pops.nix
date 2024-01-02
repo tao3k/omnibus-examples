@@ -1,0 +1,9 @@
+{
+  scripts = {
+    inputs = {
+      inputs = {
+        customInputs = { };
+      };
+    };
+  };
+}
