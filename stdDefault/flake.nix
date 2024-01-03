@@ -26,9 +26,7 @@
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       inherit systems;
-      imports = [
-        omnibusStd.flakeModule
-      ];
+      imports = [ omnibusStd.flakeModule ];
       std.std = omnibusStd.mkDefaultStd {
         cellsFrom = ./cells;
         inherit systems;
@@ -37,7 +35,10 @@
         };
       };
       std.harvest = {
-        packages = ["dev" "packages"];
+        packages = [
+          "dev"
+          "packages"
+        ];
       };
     };
 }
