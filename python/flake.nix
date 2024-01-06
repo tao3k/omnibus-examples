@@ -45,7 +45,7 @@
       overlays = {
         inherit (self.src.x86_64-linux.packages.exports.overlays)
           default
-          composePackages
+          composedPackages
           ;
       };
       inherit pops;
