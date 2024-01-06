@@ -6,10 +6,11 @@
   inputs = {
     omnibus.url = "github:gtrunsec/omnibus";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-23_11.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     system-manager = {
       url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixos-23_11";
     };
   };
 
