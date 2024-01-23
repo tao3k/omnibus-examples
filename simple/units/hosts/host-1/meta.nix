@@ -1,0 +1,7 @@
+{
+  colmena = {
+    nixpkgs = { };
+    deployment = { };
+    imports = [ ];
+  };
+}
