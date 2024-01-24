@@ -45,6 +45,13 @@
             You have created a simple case template!
           '';
         };
+        stdDefault = {
+          path = ./stdDefault;
+          description = "Omnibus & std & flake-parts";
+          welcomeText = ''
+            You have created a stdDefault template!
+          '';
+        };
       };
     };
 }
