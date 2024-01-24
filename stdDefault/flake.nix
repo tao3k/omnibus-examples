@@ -35,6 +35,10 @@
         };
       };
       std.harvest = {
+        devShells = [
+          "dev"
+          "shells"
+        ];
         packages = [
           "dev"
           "packages"
