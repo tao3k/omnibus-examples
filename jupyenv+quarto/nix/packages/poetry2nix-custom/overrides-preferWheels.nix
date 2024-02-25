@@ -1,12 +1,16 @@
+# SPDX-FileCopyrightText: 2024 The omnibus Authors
+#
+# SPDX-License-Identifier: MIT
+
 poetry2nix:
 let
   postOverlay =
     final: prev:
     let
       addNativeBuildInputs = drvName: inputs: {
-        "${drvName}" = prev.${drvName}.overridePythonAttrs (
-          old: { nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ inputs; }
-        );
+        "${drvName}" = prev.${drvName}.overridePythonAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ inputs;
+        });
       };
       unpackSource =
         source:
@@ -16,24 +20,20 @@ let
         '';
     in
     {
-      orjson = prev.orjson.overridePythonAttrs (
-        old: {
-          cargoDeps =
-            with old;
-            prev.pkgs.rustPlatform.importCargoLock {
-              lockFile = "${unpackSource old.src}/Cargo.lock";
-            };
-        }
-      );
-      cryptography = prev.cryptography.overridePythonAttrs (
-        old: {
-          cargoDeps =
-            with old;
-            prev.pkgs.rustPlatform.importCargoLock {
-              lockFile = "${unpackSource old.src}/src/rust/Cargo.lock";
-            };
-        }
-      );
+      orjson = prev.orjson.overridePythonAttrs (old: {
+        cargoDeps =
+          with old;
+          prev.pkgs.rustPlatform.importCargoLock {
+            lockFile = "${unpackSource old.src}/Cargo.lock";
+          };
+      });
+      cryptography = prev.cryptography.overridePythonAttrs (old: {
+        cargoDeps =
+          with old;
+          prev.pkgs.rustPlatform.importCargoLock {
+            lockFile = "${unpackSource old.src}/src/rust/Cargo.lock";
+          };
+      });
     }
     // addNativeBuildInputs "coolname" [ final.setuptools ];
 

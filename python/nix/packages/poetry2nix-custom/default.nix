@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 The omnibus Authors
+#
+# SPDX-License-Identifier: MIT
+
 { poetry2nix, python3, ... }:
 poetry2nix.mkPoetryEnv {
   projectDir = ./.;

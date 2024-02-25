@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 The omnibus Authors
+#
+# SPDX-License-Identifier: MIT
+
 { root }:
 let
   pkgs = root.pops.flake.inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -13,6 +17,6 @@ let
     };
   };
 in
-(pkgs.emacs29.pkgs.overrideScope overlay).withPackages (
-  epkgs: [ epkgs.typst-ts-mode ]
-)
+(pkgs.emacs29.pkgs.overrideScope overlay).withPackages (epkgs: [
+  epkgs.typst-ts-mode
+])

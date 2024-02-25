@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023 The omnibus Authors
+# SPDX-FileCopyrightText: 2024 The omnibus Authors
 #
 # SPDX-License-Identifier: MIT
 
@@ -51,16 +52,14 @@
         self.src.${system}.packages.exports.derivations
         // self.src.${system}.jupyenv.exports.jupyenvEnv
       );
-      apps = eachSystem (
-        system: {
-          quartoSimple = {
-            type = "app";
-            program =
-              self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv
-              + "/bin/quarto";
-          };
-        }
-      );
+      apps = eachSystem (system: {
+        quartoSimple = {
+          type = "app";
+          program =
+            self.src.${system}.jupyenv.exports.jupyenvEvalModules.simple.config.quartoEnv
+            + "/bin/quarto";
+        };
+      });
       overlays = {
         inherit (self.src.x86_64-linux.packages.exports.overlays)
           default
