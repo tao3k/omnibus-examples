@@ -4,51 +4,81 @@
 #+DATE: 2024-03-11 Mon 17:25
 
 
+#+begin_src elisp :exports none
+(defun cpb/convert-attachment-to-file ()
+  "Convert [[attachment:..]] to [[file:..][file:..]]"
+  (interactive)
+  (let ((elem (org-element-context)))
+    (if (eq (car elem) 'link)
+        (let ((type (org-element-property :type elem)))
+          ;; only translate attachment type links
+          (when (string= type "attachment")
+            ;; translate attachment path to relative filename using org-attach API
+            ;; 2020-11-15: org-attach-export-link was removed, so had to rewrite
+            (let* ((link-end (org-element-property :end elem))
+                   (link-begin (org-element-property :begin elem))
+                   ;; :path is everything after attachment:
+                   (file (org-element-property :path elem))
+                   ;; expand that to the full filename
+                   (fullpath (org-attach-expand file))
+                   ;; then make it relative to the directory of this org file
+                   (current-dir (file-name-directory (or default-directory
+                                                         buffer-file-name)))
+                   (relpath (file-relative-name fullpath current-dir)))
+              ;; delete the existing link
+              (delete-region link-begin link-end)
+              ;; replace with file: link and file: description
+              (insert (format "[[file:%s][file:%s]]" relpath relpath))))))))
+#+end_src
+
+#+RESULTS:
+: cpb/convert-attachment-to-file
+
 * Base :ATTACH:
 :PROPERTIES:
 :ID:       72a4477d-ecde-4efc-98c3-fb9bf64d7f65
 :END:
 
 
-[[attachment:_20240311_172532screenshot.png]]
+[[file:docs/org/attach/72/a4477d-ecde-4efc-98c3-fb9bf64d7f65/_20240311_172532screenshot.png][file:docs/org/attach/72/a4477d-ecde-4efc-98c3-fb9bf64d7f65/_20240311_172532screenshot.png]]
 
-[[attachment:_20240311_172627screenshot.png]]
+[[file:docs/org/attach/72/a4477d-ecde-4efc-98c3-fb9bf64d7f65/_20240311_172627screenshot.png][file:docs/org/attach/72/a4477d-ecde-4efc-98c3-fb9bf64d7f65/_20240311_172627screenshot.png]]
 * Haumea&Bus :ATTACH:
 :PROPERTIES:
 :ID:       af4dee71-ed8a-46cb-b1de-2667dcb3525c
 :END:
 
-[[attachment:_20240311_173655screenshot.png]]
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173655screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173655screenshot.png]]
 
 
 
-[[attachment:_20240311_173705screenshot.png]]
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173705screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173705screenshot.png]]
 
-[[attachment:_20240311_173732screenshot.png]]
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173732screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173732screenshot.png]]
 
-[[attachment:_20240311_173832screenshot.png]]
-
-
-[[attachment:_20240311_173909screenshot.png]]
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173832screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173832screenshot.png]]
 
 
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173909screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173909screenshot.png]]
 
-[[attachment:_20240311_173942screenshot.png]]
+
+
+[[file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173942screenshot.png][file:docs/org/attach/af/4dee71-ed8a-46cb-b1de-2667dcb3525c/_20240311_173942screenshot.png]]
 * Nix&Bus :ATTACH:
 :PROPERTIES:
 :ID:       020b1169-2a95-4fc6-99fd-9caca6f0a50b
 :END:
 
-[[attachment:_20240311_175550screenshot.png]]
+[[file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175550screenshot.png][file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175550screenshot.png]]
 
 
 
-[[attachment:_20240311_175645screenshot.png]]
+[[file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175645screenshot.png][file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175645screenshot.png]]
 
 
 
-[[attachment:_20240311_175746screenshot.png]]
+[[file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175746screenshot.png][file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_175746screenshot.png]]
 
 
 
-[[attachment:_20240311_180149screenshot.png]]
+[[file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_180149screenshot.png][file:docs/org/attach/02/0b1169-2a95-4fc6-99fd-9caca6f0a50b/_20240311_180149screenshot.png]]
