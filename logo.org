@@ -1,0 +1,54 @@
+#+TITLE: logo
+#+AUTHOR: GuangTao Zhang
+#+EMAIL: gtrunsec@hardenedlinux.org
+#+DATE: 2024-03-11 Mon 17:25
+
+
+* Base :ATTACH:
+:PROPERTIES:
+:ID:       72a4477d-ecde-4efc-98c3-fb9bf64d7f65
+:END:
+
+
+[[attachment:_20240311_172532screenshot.png]]
+
+[[attachment:_20240311_172627screenshot.png]]
+* Haumea&Bus :ATTACH:
+:PROPERTIES:
+:ID:       af4dee71-ed8a-46cb-b1de-2667dcb3525c
+:END:
+
+[[attachment:_20240311_173655screenshot.png]]
+
+
+
+[[attachment:_20240311_173705screenshot.png]]
+
+[[attachment:_20240311_173732screenshot.png]]
+
+[[attachment:_20240311_173832screenshot.png]]
+
+
+[[attachment:_20240311_173909screenshot.png]]
+
+
+
+[[attachment:_20240311_173942screenshot.png]]
+* Nix&Bus :ATTACH:
+:PROPERTIES:
+:ID:       020b1169-2a95-4fc6-99fd-9caca6f0a50b
+:END:
+
+[[attachment:_20240311_175550screenshot.png]]
+
+
+
+[[attachment:_20240311_175645screenshot.png]]
+
+
+
+[[attachment:_20240311_175746screenshot.png]]
+
+
+
+[[attachment:_20240311_180149screenshot.png]]

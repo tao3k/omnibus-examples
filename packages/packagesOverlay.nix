@@ -15,9 +15,7 @@ nixos-23_11.legacyPackages.x86_64-linux.appendOverlays [
       overrides = prev.lib.composeExtensions (old.overrides or (_: _: { })) (
         _selfP: _:
         # can be either super.packages.exports.packages.py.packages selfP
-        {
-          a = "1";
-        }
+        { a = "1"; }
       );
     });
   })
