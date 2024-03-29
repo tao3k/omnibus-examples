@@ -20,26 +20,37 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
-      pops = {
+      pops = rec {
         nixosModules = inputs.omnibus.pops.nixosModules.addLoadExtender {
           load = {
             src = ./units/nixos/nixosModules;
-          };
-        };
-        nixosProfiles = inputs.omnibus.pops.nixosProfiles.addLoadExtender {
-          load = {
-            src = ./units/nixos/nixosProfiles;
             inputs = {
               inherit inputs;
             };
           };
         };
-        homeProfiles = inputs.omnibus.pops.homeProfiles.addLoadExtender {
+        nixosProfiles = nixosModules.addLoadExtender {
+          load = {
+            type = "nixosProfile";
+            src = ./units/nixos/nixosProfiles;
+            # inherit the inputs from the nixoModules, so we don't have to repeat them here
+            # inputs = {
+            #   inherit inputs;
+            # };
+          };
+        };
+        homeModules = inputs.omnibus.pops.homeModules.addLoadExtender {
           load = {
             src = ./units/nixos/homeProfiles;
             inputs = {
               inherit inputs;
             };
+          };
+        };
+        homeProfiles = homeModules.addLoadExtender {
+          load = {
+            type = "nixosProfile";
+            src = ./units/nixos/homeProfiles;
           };
         };
         data = inputs.omnibus.pops.data.addLoadExtender {
