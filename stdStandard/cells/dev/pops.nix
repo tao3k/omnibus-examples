@@ -15,5 +15,10 @@ omnibusStd.mkBlocks.pops commonArgs {
   };
   devshellProfiles = {
     src = ./devshellProfiles;
+    inputs = {
+      inputs = {
+        inherit (inputs.omnibus.flake.inputs) devshell;
+      };
+    };
   };
 }
