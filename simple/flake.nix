@@ -31,7 +31,7 @@
         };
         nixosProfiles = nixosModules.addLoadExtender {
           load = {
-            type = "nixosProfile";
+            type = "nixosProfiles";
             src = ./units/nixos/nixosProfiles;
             # inherit the inputs from the nixoModules, so we don't have to repeat them here
             # inputs = {
@@ -49,7 +49,7 @@
         };
         homeProfiles = homeModules.addLoadExtender {
           load = {
-            type = "nixosProfile";
+            type = "nixosProfiles";
             src = ./units/nixos/homeProfiles;
           };
         };
