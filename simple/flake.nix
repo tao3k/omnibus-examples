@@ -25,7 +25,10 @@
           load = {
             src = ./units/nixos/nixosModules;
             inputs = {
-              inherit inputs;
+              inputs = inputs // {
+                data = self.data;
+              };
+              data = pops.data.exports.default;
             };
           };
         };
