@@ -29,10 +29,13 @@
           };
         };
         hive = inputs.omnibus.pops.hive.setHosts pops.hosts.exports.default;
+        customHive = pops.hive.setNixosConfigurationsRenamer "customNixOS";
       };
     in
     {
       inherit pops;
       inherit (pops.hive.exports) nixosConfigurations darwinConfigurations colmenaHive;
+      customNixOSConfigurations = pops.customHive.exports.nixosConfigurations;
+      customColmenaHive = pops.customHive.exports.colmenaHive;
     };
 }
