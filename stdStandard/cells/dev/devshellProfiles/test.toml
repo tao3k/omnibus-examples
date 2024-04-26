@@ -1,4 +1,2 @@
 [devshell]
-packages = [
-  "hello"
-]
+packages = ["hello"]

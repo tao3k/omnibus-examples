@@ -34,7 +34,11 @@
         }
       );
       packages = eachSystem (
-        system: self.examples.${system}.packages.exports.derivations
+        system:
+        self.examples.${system}.packages.exports.derivations
+
+          default = inputs.nixpkgs.legacyPackages.${system}.hello;
+        }
       );
     }
     // {

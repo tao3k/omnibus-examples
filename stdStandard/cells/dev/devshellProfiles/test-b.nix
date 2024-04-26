@@ -1,4 +1,4 @@
 { pkgs }:
 {
-   packages = [ pkgs.fd ];
+  packages = [ pkgs.fd ];
 }

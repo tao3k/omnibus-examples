@@ -61,6 +61,15 @@
             src = ./data;
           };
         };
+        hosts = inputs.omnibus.pops.load {
+          src = ./hosts;
+          inputs = {
+            inputs = inputs // { };
+          };
+        };
+
+        hive = inputs.omnibus.pops.hive.setHosts self.hosts;
+
         omnibus = eachSystem (
           system:
           inputs.omnibus.pops.self.addLoadExtender {
@@ -73,7 +82,7 @@
         );
         allData = eachSystem (
           system:
-          pops.omnibus.pops.allData.addLoadExtender {
+          inputs.omnibus.pops.allData.addLoadExtender {
             load = {
               src = ./data;
               inputs = {
