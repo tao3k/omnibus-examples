@@ -34,8 +34,7 @@
         }
       );
       packages = eachSystem (
-        system:
-        self.examples.${system}.packages.exports.derivations
+        system: self.examples.${system}.packages.exports.derivations
       );
     }
     // {

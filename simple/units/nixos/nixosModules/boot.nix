@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2024 The omnibus Authors
 #
 # SPDX-License-Identifier: MIT
-{lib}:
+{ lib }:
 {
   options.__profiles__ = with lib; {
     test = mkOption {

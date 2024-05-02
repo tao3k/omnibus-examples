@@ -1,0 +1,3 @@
+[submodule "hivebus"]
+	path = hivebus
+	url = https://github.com/tao3k/hivebus
