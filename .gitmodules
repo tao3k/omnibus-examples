@@ -1,3 +1,6 @@
 [submodule "hivebus"]
 	path = hivebus
 	url = https://github.com/tao3k/hivebus
+[submodule "StdDefault"]
+	path = StdDefault
+	url = https://github.com/tao3k/StdDefault
