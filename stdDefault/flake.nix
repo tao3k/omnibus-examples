@@ -6,7 +6,7 @@
 {
   description = "OmnibusStd";
 
-  inputs.omnibus.url = "github:gtrunsec/omnibus";
+  inputs.omnibus.url = "github:tao3k/omnibus";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs =
@@ -17,7 +17,6 @@
       systems = [
         "x86_64-linux"
         "aarch64-linux"
-        "aarch64-darwin"
       ];
       omnibusStd =
         (omnibus.pops.std {
