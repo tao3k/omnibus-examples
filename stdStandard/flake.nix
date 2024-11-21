@@ -13,7 +13,7 @@
     { omnibus, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      inherit (omnibus.flake.inputs) std climodSrc flake-parts;
+      inherit (omnibus.flake.inputs) std pogSrc flake-parts;
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -33,7 +33,7 @@
         cellsFrom = ./cells;
         inherit systems;
         inputs = inputs // {
-          inherit climodSrc;
+          inherit pogSrc;
         };
       };
       std.harvest = {
