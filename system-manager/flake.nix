@@ -17,7 +17,7 @@
     { self, system-manager, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      eachSystem = lib.genAttrs [
+      supportedSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
@@ -33,7 +33,7 @@
                 inputs = { };
               };
             };
-        omnibus = eachSystem (
+        omnibus = supportedSystems (
           system:
           inputs.omnibus.pops.self.addLoadExtender {
             load.inputs = {

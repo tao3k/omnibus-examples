@@ -14,7 +14,7 @@
     { self, ... }@inputs:
     let
       inherit (inputs.omnibus.inputs.flops.inputs.nixlib) lib;
-      eachSystem = lib.genAttrs [
+      supportedSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
@@ -70,7 +70,7 @@
 
         hive = inputs.omnibus.pops.hive.setHosts self.hosts;
 
-        omnibus = eachSystem (
+        omnibus = supportedSystems (
           system:
           inputs.omnibus.pops.self.addLoadExtender {
             load.inputs = {
@@ -80,7 +80,7 @@
             };
           }
         );
-        allData = eachSystem (
+        allData = supportedSystems (
           system:
           inputs.omnibus.pops.allData.addLoadExtender {
             load = {

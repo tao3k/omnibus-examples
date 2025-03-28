@@ -15,7 +15,7 @@
     { self, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      eachSystem = lib.genAttrs [
+      supportedSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
@@ -23,7 +23,7 @@
       ];
       nix-filter = (inputs.omnibus.pops.packages { }).load.inputs.nix-filter;
       pops = {
-        src = eachSystem (
+        src = supportedSystems (
           system:
           inputs.omnibus.pops.load {
             src = nix-filter.filter {
@@ -42,7 +42,7 @@
     in
     mapPopsExports pops
     // {
-      packages = eachSystem (system: self.src.${system}.packages.exports.derivations);
+      packages = supportedSystems (system: self.src.${system}.packages.exports.derivations);
       overlays = {
         inherit (self.src.x86_64-linux.packages.exports.overlays)
           default

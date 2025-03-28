@@ -17,7 +17,7 @@
     { self, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      eachSystem = lib.genAttrs [
+      supportedSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
@@ -25,7 +25,7 @@
       ];
       nix-filter = (inputs.omnibus.pops.packages { }).load.inputs.nix-filter;
       pops = {
-        src = eachSystem (
+        src = supportedSystems (
           system:
           inputs.omnibus.pops.load {
             src = nix-filter.filter {
@@ -47,12 +47,12 @@
     in
     mapPopsExports pops
     // {
-      packages = eachSystem (
+      packages = supportedSystems (
         system:
         self.src.${system}.packages.exports.derivations
         // self.src.${system}.jupyenv.exports.jupyenvEnv
       );
-      apps = eachSystem (system: {
+      apps = supportedSystems (system: {
         quartoSimple = {
           type = "app";
           program =

@@ -13,7 +13,7 @@
     { self, omnibus, ... }@inputs:
     let
       inherit (inputs.nixpkgs) lib;
-      eachSystem = lib.genAttrs [
+      supportedSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
         "aarch64-linux"
@@ -21,7 +21,7 @@
       ];
     in
     {
-      examples = eachSystem (
+      examples = supportedSystems (
         system:
         omnibus.load {
           src = ./.;
@@ -33,7 +33,7 @@
           };
         }
       );
-      packages = eachSystem (
+      packages = supportedSystems (
         system: self.examples.${system}.packages.exports.derivations
       );
     }
