@@ -10,9 +10,7 @@
   projectRoot,
 }:
 let
-  nixpkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [
-    inputs.poetry2nix.overlays.default
-  ];
+  nixpkgs = inputs.nixpkgs.legacyPackages.${system}.appendOverlays [];
 in
 (omnibus.pops.packages {
   src = projectRoot + /nix/packages;
