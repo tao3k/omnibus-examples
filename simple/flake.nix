@@ -104,8 +104,11 @@
         modules = [
           self.nixosProfiles.presets.boot
           {
+            # Keep the example minimal, but still provide the root fs metadata
+            # that NixOS now expects during top-level evaluation.
             fileSystems."/" = {
               device = "/dev/disk/by-label/nixos";
+              fsType = "ext4";
             };
             boot.loader = {
               systemd-boot.enable = true;
