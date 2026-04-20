@@ -19,7 +19,11 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
-      nix-filter = (inputs.omnibus.pops.packages { }).load.inputs.nix-filter;
+      /**
+        Reuse the root flake's locked `nix-filter` input instead of reaching
+        through an internal pop loader shape that is no longer exported.
+      */
+      nix-filter = inputs.omnibus.src.flakeOutputs.flake.inputs.nix-filter.lib;
       pops = {
         src = supportedSystems (
           system:
